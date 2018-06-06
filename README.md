@@ -14,7 +14,7 @@ steganography projects:
 - send_one - as previous but more convenient
 - start_sniffing - starts ICMP packets sniffer
 
-Packet also provides to commandline utils for creating remote shell.
+Packet also provides commandline utils for creating remote shell.
 
 **icmp-remote-shell-client** - ICMP remote shell client
 
