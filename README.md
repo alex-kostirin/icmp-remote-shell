@@ -20,7 +20,7 @@ Packet also provides to commandline utils for creating remote shell.
 
 Usage:
 
-`icmp-remote-shell-client host_out host_in \[ping_delay\] \[log_file\]`
+`icmp-remote-shell-client host_out host_in [ping_delay] [log_file]`
 
 where:
 
@@ -34,7 +34,7 @@ where:
 
 Usage:
 
-`icmp-remote-shell-server host \[ping_delay\]`
+`icmp-remote-shell-server host [ping_delay]`
 
 where:
 
