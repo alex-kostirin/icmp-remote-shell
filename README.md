@@ -46,7 +46,7 @@ where:
 
 **Contribution**
 
-Fell free ro contribute to this project using
+Feel free to contribute to this project using
 [github](https://github.com/alex-kostirin/icmp-remote-shell) or
 [gitlab](https://gitlab.com/alex-kostirin/icmp-remote-shell).
 
