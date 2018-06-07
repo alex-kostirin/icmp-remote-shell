@@ -1,4 +1,6 @@
 # ICMP remote shell
+[![PyPI version](https://badge.fury.io/py/icmp-remote-shell.svg)](https://badge.fury.io/py/icmp-remote-shell)
+
 Prototype of steganography remote shell using ICMP protocol for data
 hiding.
 
